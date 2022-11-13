@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string('user_type', 16);
             $table->string('name', 128);
             $table->string('email')->index();
+            $table->string('address', 256);
             $table->string('no_telp', 16);
             $table->string('password', 64);
+            $table->date('birthday');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
