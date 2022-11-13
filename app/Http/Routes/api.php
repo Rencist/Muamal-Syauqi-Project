@@ -7,9 +7,6 @@ Route::get('hello', function () {
     return response()->json();
 });
 
-Route::post('/create_user', [UserController::class, 'createUser']);
-Route::post('/login_user', [UserController::class, 'loginUser']);
-
 Route::middleware(['iam'])->group(
     function () {
         Route::get('test', function(){

@@ -58,4 +58,12 @@ class UserController extends Controller
         return $this->successWithData($response);
     }
 
+    public function webCreateUser() {
+        return view('auth.register');
+    }
+
+    public function webLoginUser() {
+        return view('auth.login');
+    }
+ 
 }
