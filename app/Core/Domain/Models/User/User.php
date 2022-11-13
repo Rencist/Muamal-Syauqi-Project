@@ -5,6 +5,7 @@ namespace App\Core\Domain\Models\User;
 use Exception;
 use App\Core\Domain\Models\Email;
 use App\Exceptions\UserException;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
 
 class User
@@ -12,8 +13,10 @@ class User
     private UserId $id;
     private UserType $type;
     private Email $email;
+    private Date $birthday;
     private string $no_telp;
     private string $name;
+    private string $address;
     private string $hashed_password;
     private static bool $verifier = false;
 
@@ -21,17 +24,21 @@ class User
      * @param UserId $id
      * @param UserType $type
      * @param Email $email
+     * @param Date $birthday
      * @param string $no_telp
      * @param string $name
+     * @param string $address
      * @param string $hashed_password
      */
-    public function __construct(UserId $id, UserType $type, Email $email, string $no_telp, string $name, string $hashed_password)
+    public function __construct(UserId $id, UserType $type, Email $email, Date $birthday, string $no_telp, string $name, string $address, string $hashed_password)
     {
         $this->id = $id;
         $this->type = $type;
         $this->email = $email;
+        $this->birthday = $birthday;
         $this->no_telp = $no_telp;
         $this->name = $name;
+        $this->address = $address;
         $this->hashed_password = $hashed_password;
     }
 
@@ -41,6 +48,22 @@ class User
     public function getEmail(): Email
     {
         return $this->email;
+    }
+
+    /**
+     * @return Date
+     */
+    public function getBirthday(): Date
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @return string 
+     */
+    public function getAddress(): string
+    {
+        return $this->address;
     }
 
     /**
