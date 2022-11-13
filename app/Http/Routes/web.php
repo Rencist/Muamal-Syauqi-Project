@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,5 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function() {
+    return redirect('/login_user');
+});
 
-require app_path('Http/Routes')."/web.php";
+Route::post('/create_user', [UserController::class, 'createUser'])->name('register');
+Route::post('/login_user', [UserController::class, 'loginUser'])->name('login');
+
+Route::get('/create_user', [UserController::class, 'webCreateUser']);
+Route::get('/login_user', [UserController::class, 'webLoginUser']);
