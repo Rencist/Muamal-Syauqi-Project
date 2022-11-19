@@ -5,6 +5,7 @@ namespace App\Core\Domain\Models\Stock;
 use App\Core\Domain\Models\User\UserId;
 use App\Core\Domain\Models\Stock\StockId;
 use App\Core\Domain\Models\Stock\StockType;
+use PHPUnit\Framework\SelfDescribing;
 
 class Stock
 {
@@ -26,6 +27,18 @@ class Stock
         $this->name = $name;
         $this->jumlah = $jumlah; 
         $this->harga = $harga;
+    }
+
+    public static function create(UserId $user_id, StockType $type, string $name, float $jumlah, float $harga): self
+    {
+        return new self(
+            StockId::generate(),
+            $user_id,
+            $type,
+            $name,
+            $jumlah,
+            $harga
+        );
     }
 
     /**
