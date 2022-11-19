@@ -17,6 +17,16 @@ Route::get('/', function() {
     return redirect('/login_user');
 });
 
+Route::middleware(['iam'])->group(
+    function () {
+        Route::get('/test', function(){
+            return response()->json([
+                "success" => true
+            ]);
+        });
+    }
+);
+
 Route::post('/create_user', [UserController::class, 'createUser'])->name('register');
 Route::post('/login_user', [UserController::class, 'loginUser'])->name('login');
 

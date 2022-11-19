@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('stock', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foregin('user_id')->references('id')->on('user');
+            $table->uuid('user_id')->index();
             $table->string('stock_type', 64);
             $table->string('name', 128);
             $table->float('jumlah');
             $table->float('harga');
+
+            $table->foreign('user_id')->references('id')->on('user');
         });
     }
 

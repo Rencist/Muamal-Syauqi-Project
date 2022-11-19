@@ -5,7 +5,6 @@ namespace App\Core\Domain\Models\User;
 use Exception;
 use App\Core\Domain\Models\Email;
 use App\Exceptions\UserException;
-use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
 
 class User
@@ -13,7 +12,7 @@ class User
     private UserId $id;
     private UserType $type;
     private Email $email;
-    private Date $birthday;
+    private int $usia;
     private string $no_telp;
     private string $name;
     private string $address;
@@ -24,18 +23,18 @@ class User
      * @param UserId $id
      * @param UserType $type
      * @param Email $email
-     * @param Date $birthday
+     * @param int $usia
      * @param string $no_telp
      * @param string $name
      * @param string $address
      * @param string $hashed_password
      */
-    public function __construct(UserId $id, UserType $type, Email $email, Date $birthday, string $no_telp, string $name, string $address, string $hashed_password)
+    public function __construct(UserId $id, UserType $type, Email $email, int $usia, string $no_telp, string $name, string $address, string $hashed_password)
     {
         $this->id = $id;
         $this->type = $type;
         $this->email = $email;
-        $this->birthday = $birthday;
+        $this->usia = $usia;
         $this->no_telp = $no_telp;
         $this->name = $name;
         $this->address = $address;
@@ -51,11 +50,11 @@ class User
     }
 
     /**
-     * @return Date
+     * @return int
      */
-    public function getBirthday(): Date
+    public function getUsia(): int
     {
-        return $this->birthday;
+        return $this->usia;
     }
 
     /**
@@ -114,14 +113,16 @@ class User
     /**
      * @throws Exception
      */
-    public static function create(UserType $type, Email $email, string $no_telp, string $name, string $unhashed_password): self
+    public static function create(UserType $type, Email $email, int $usia, string $no_telp, string $name, string $address, string $unhashed_password): self
     {
         return new self(
             UserId::generate(),
             $type,
             $email,
+            $usia,
             $no_telp,
             $name,
+            $address,
             Hash::make($unhashed_password)
         );
     }

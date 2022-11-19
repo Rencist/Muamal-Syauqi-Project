@@ -18,7 +18,9 @@ class SqlUserRepository implements UserRepositoryInterface
             'id' => $user->getId()->toString(),
             'user_type' => $user->getType()->value,
             'email' => $user->getEmail()->toString(),
+            'usia' => $user->getUsia(),
             'no_telp' => $user->getNoTelp(),
+            'address' => $user->getAddress(),
             'name' => $user->getName(),
             'password' => $user->getHashedPassword()
         ], 'id');
@@ -58,7 +60,9 @@ class SqlUserRepository implements UserRepositoryInterface
             UserType::from($row->user_type),
             new Email($row->email),
             $row->no_telp,
+            $row->usia,
             $row->name,
+            $row->address,
             $row->password
         );
     }

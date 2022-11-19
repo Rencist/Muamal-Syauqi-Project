@@ -28,9 +28,12 @@ class UserController extends Controller
         ]);
 
         $input = new RegisterUserRequest(
+            $request->input('type'),
             $request->input('email'),
+            $request->input('usia'),
             $request->input('no_telp'),
             $request->input('name'),
+            $request->input('address'),
             $request->input('password')
         );
 

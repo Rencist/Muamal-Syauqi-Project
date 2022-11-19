@@ -26,10 +26,12 @@ class RegisterUserService
     public function execute(RegisterUserRequest $request)
     {
         $user = User::create(
-            UserType::USER,
+            UserType::from($request->getType()),
             new Email($request->getEmail()),
+            $request->getUsia(),
             $request->getNoTelp(),
             $request->getName(),
+            $request->getAddress(),
             $request->getPassword()
         );
         $this->user_repository->persist($user);
