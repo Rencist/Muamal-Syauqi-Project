@@ -2,28 +2,36 @@
 
 namespace App\Core\Application\Service\GetStock;
 
+use Illuminate\Support\Facades\DB;
+use App\Core\Application\Service\GetStock\GetStockResponse;
+
 class GetStockService 
 {
-    private StockRepositoryInterface $stock_repository;
-
-    /**
-     * @param StockRepositoryInterface $stock_repository
-     */
-    public function __construct(StockRepositoryInterface $stock_repository)
-    {
-        $this->stock_repository = $stock_repository;
-    }
 
     /**
      * @throws Exception
      */
-    public function execute(): GetStockResponse
+    public function execute(): array
     {
-        $stock = $this->stock_repository->getAll();
-        if (!$stock) {
-            UserException::throw("stock tidak ada", 1006, 404);
-        }
-        
-        return new GetStockResponse($stock);
+        $query = DB::select(
+            "
+            select id, user_id, stock_type, name, jumlah, harga
+            from stock
+            order by id desc
+            "
+        );
+        $query_collection = collect($query);
+        $data = $query_collection
+            ->map(function ($query) {
+                return new GetStockResponse(
+                    $query->id,
+                    $query->user_id,
+                    $query->stock_type,
+                    $query->name,
+                    $query->jumlah,
+                    $query->harga,
+                );
+            })->values()->all();
+        return $data;
     }
 }

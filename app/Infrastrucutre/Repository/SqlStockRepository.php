@@ -41,18 +41,6 @@ class SqlStockRepository implements StockRepositoryInterface
     /**
      * @throws Exception
      */
-    public function getAll(): ?array
-    {
-        $row = DB::table('stock')->get();
-
-        if (!$row) return null;
-
-        return $this->constructFromRows($row->all());
-    }
-
-    /**
-     * @throws Exception
-     */
     private function constructFromRow($row): Stock
     {
         return new Stock(
@@ -63,14 +51,5 @@ class SqlStockRepository implements StockRepositoryInterface
             $row->jumlah,
             $row->harga
         );
-    }
-
-    public function constructFromRows(array $rows): array
-    {
-        $stocks = [];
-        foreach ($rows as $row) {
-            $stocks[] = $this->constructFromRow($row);
-        }
-        return $stocks;
     }
 }

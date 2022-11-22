@@ -3,9 +3,11 @@
 namespace App\Core\Domain\Repository;
 
 use App\Core\Domain\Models\Stock\Stock;
+use App\Core\Domain\Models\Stock\StockId;
 
-interface UserRepositoryInterface
+interface StockRepositoryInterface
 {
     public function persist(Stock $stock): void;
-    public function getAll(): array;
+
+    public function find(StockId $id): ?Stock;
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,8 @@ Route::middleware(['iam'])->group(
                 "success" => true
             ]);
         });
+        Route::post('/create_stock', [StockController::class, 'createStock'])->name('createStock');
+        Route::get('/get_stock', [StockController::class, 'getStock'])->name('getStock');
     }
 );
 

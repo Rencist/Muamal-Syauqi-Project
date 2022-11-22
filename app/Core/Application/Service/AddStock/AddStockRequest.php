@@ -4,14 +4,14 @@ namespace App\Core\Application\Service\AddStock;
 
 class AddStockRequest
 {
-    private string $nama;
+    private string $name;
     private float $jumlah;
     private float $harga;
     private string $type;
 
-    public function __construct(string $nama, float $jumlah, float $harga, string $type)
+    public function __construct(string $name, float $jumlah, float $harga, string $type)
     {
-        $this->nama = $nama;
+        $this->name = $name;
         $this->jumlah = $jumlah;
         $this->harga = $harga;
         $this->type = $type;
