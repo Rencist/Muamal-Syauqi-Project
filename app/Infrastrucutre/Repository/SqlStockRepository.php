@@ -47,11 +47,7 @@ class SqlStockRepository implements StockRepositoryInterface
 
         if (!$row) return null;
 
-        $stocks = array_map(function($row) {
-            return $this->constructFromRow($row);
-        }, iterator_to_array($row));
-
-        return $stocks;
+        return $this->constructFromRows($row->all());
     }
 
     /**
@@ -67,5 +63,14 @@ class SqlStockRepository implements StockRepositoryInterface
             $row->jumlah,
             $row->harga
         );
+    }
+
+    public function constructFromRows(array $rows): array
+    {
+        $stocks = [];
+        foreach ($rows as $row) {
+            $stocks[] = $this->constructFromRow($row);
+        }
+        return $stocks;
     }
 }
