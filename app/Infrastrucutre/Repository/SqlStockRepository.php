@@ -41,6 +41,18 @@ class SqlStockRepository implements StockRepositoryInterface
     /**
      * @throws Exception
      */
+    public function findByUserId(UserId $user_id): ?Stock
+    {
+        $row = DB::table('stock')->where('user_id', $user_id->toString())->first();
+
+        if (!$row) return null;
+
+        return $this->constructFromRow($row);
+    }
+
+    /**
+     * @throws Exception
+     */
     private function constructFromRow($row): Stock
     {
         return new Stock(
