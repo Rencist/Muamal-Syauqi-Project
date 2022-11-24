@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\PrediksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,5 @@ Route::post('/login_user', [UserController::class, 'loginUser'])->name('login');
 
 Route::get('/create_user', [UserController::class, 'webCreateUser']);
 Route::get('/login_user', [UserController::class, 'webLoginUser']);
+
+Route::get('/prediksi', [PrediksiController::class, 'webPrediksi']);
