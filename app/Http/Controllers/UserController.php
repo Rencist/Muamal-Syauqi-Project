@@ -51,14 +51,15 @@ class UserController extends Controller
     /**
      * @throws Exception
      */
-    public function loginUser(Request $request, LoginUserService $service): JsonResponse
+    public function loginUser(Request $request, LoginUserService $service)
     {
         $input = new LoginUserRequest(
             $request->input('email'),
             $request->input('password')
         );
         $response = $service->execute($input);
-        return $this->successWithData($response);
+        
+        return redirect('/create_user');
     }
 
     public function webCreateUser() {
