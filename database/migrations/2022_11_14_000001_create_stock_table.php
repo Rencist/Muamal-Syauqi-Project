@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id')->index();
             $table->string('stock_type', 64);
+            $table->timestamp('created_at')->useCurrent();
             $table->string('name', 128);
             $table->float('jumlah');
             $table->float('harga');

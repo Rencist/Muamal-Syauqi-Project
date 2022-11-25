@@ -39,3 +39,4 @@ Route::get('/create_user', [UserController::class, 'webCreateUser']);
 Route::get('/login_user', [UserController::class, 'webLoginUser']);
 
 Route::get('/prediksi', [PrediksiController::class, 'webPrediksi']);
+Route::get('/stock', [StockController::class, 'getStock']);

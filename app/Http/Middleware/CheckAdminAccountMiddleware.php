@@ -33,7 +33,7 @@ class CheckAdminAccountMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        /** @var MabaAccount $account */
+        /** @var UserAccount $account */
         $account = $request->get('account');
         if (!$account) {
             UserException::throw("admin account could not be decoded", 2056);

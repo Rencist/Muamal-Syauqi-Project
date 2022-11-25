@@ -2,6 +2,7 @@
 
 namespace App\Core\Application\Service\GetStock;
 
+use Exception;
 use Illuminate\Support\Facades\DB;
 use App\Core\Application\Service\GetStock\GetStockResponse;
 
@@ -11,13 +12,23 @@ class GetStockService
     /**
      * @throws Exception
      */
-    public function execute(): array
+    public function execute(GetStockRequest $request): array
     {
+        $additional_query = "";
+        if($request->getStatus() != "")
+            $additional_query = "where s.status = {$request->getStatus()}";
+
         $query = DB::select(
             "
-            select id, user_id, stock_type, name, jumlah, harga
-            from stock
-            order by id desc
+            select 
+                s.id, 
+                (select u.name from user u where u.id = s.user_id) as nama_petani, 
+                s.stock_type, 
+                s.name, 
+                s.jumlah, 
+                s.harga
+            from stock s
+            {$additional_query}
             "
         );
         $query_collection = collect($query);
@@ -25,7 +36,7 @@ class GetStockService
             ->map(function ($query) {
                 return new GetStockResponse(
                     $query->id,
-                    $query->user_id,
+                    $query->nama_petani,
                     $query->stock_type,
                     $query->name,
                     $query->jumlah,
