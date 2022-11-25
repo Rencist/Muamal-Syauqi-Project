@@ -29,6 +29,7 @@ Route::middleware(['iam'])->group(
         Route::post('/create_stock', [StockController::class, 'createStock'])->name('createStock');
         Route::get('/get_stock', [StockController::class, 'getStock'])->name('getStock');
         Route::post('/buy_stock', [StockController::class, 'buyStock'])->name('buyStock');
+        Route::get('/my_stock', [StockController::class, 'myStock'])->name('myStock');
     }
 );
 

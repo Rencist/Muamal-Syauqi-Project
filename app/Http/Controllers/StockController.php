@@ -7,11 +7,12 @@ use Throwable;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use App\Core\Application\Service\MyStock\MyStockService;
 use App\Core\Application\Service\AddStock\AddStockRequest;
 use App\Core\Application\Service\AddStock\AddStockService;
-use App\Core\Application\Service\GetStock\GetStockRequest;
 use App\Core\Application\Service\BuyStock\BuyStockRequest;
 use App\Core\Application\Service\BuyStock\BuyStockService;
+use App\Core\Application\Service\GetStock\GetStockRequest;
 use App\Core\Application\Service\GetStock\GetStockService;
 
 class StockController extends Controller
@@ -63,5 +64,11 @@ class StockController extends Controller
         }
         DB::commit();
         return $this->success();
+    }
+
+    public function myStock(Request $request, MyStockService $service): JsonResponse
+    {
+        $response = $service->execute($request->get('account'));
+        return $this->successWithData($response);
     }
 }
