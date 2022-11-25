@@ -7,17 +7,20 @@ use App\Core\Domain\Models\Stock\Stock;
 use App\Core\Domain\Models\UserAccount;
 use App\Core\Domain\Models\Stock\StockId;
 use App\Core\Domain\Models\Stock\StockStatus;
-use App\Core\Domain\Repository\UserRepositoryInterface;
 use App\Core\Domain\Repository\StockRepositoryInterface;
 use App\Core\Application\Service\BuyStock\BuyStockRequest;
+use App\Core\Domain\Models\LogStock\LogStock;
+use App\Core\Domain\Repository\LogStockRepositoryInterface;
 
 class BuyStockService 
 {
     private StockRepositoryInterface $stock_repository;
+    private LogStockRepositoryInterface $log_stock_repository;
 
-    public function __construct(StockRepositoryInterface $stock_repository)
+    public function __construct(StockRepositoryInterface $stock_repository, LogStockRepositoryInterface $log_stock_repository)
     {
         $this->stock_repository = $stock_repository;
+        $this->log_stock_repository = $log_stock_repository;
     }
 
     public function execute(BuyStockRequest $request, UserAccount $account)
@@ -43,6 +46,12 @@ class BuyStockService
                 $buy_stock->getHarga(),
             );
             $this->stock_repository->persist($stock);
+            $log_stock = LogStock::create(
+                $account->getUserId(),
+                $stock->getId(),
+                $request->getJumlah(),
+            );
+            $this->log_stock_repository->persist($log_stock);
         }
         $this->stock_repository->persist($buy_stock);
     }
