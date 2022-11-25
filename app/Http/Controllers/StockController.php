@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Core\Application\Service\AddStock\AddStockRequest;
 use App\Core\Application\Service\AddStock\AddStockService;
 use App\Core\Application\Service\GetStock\GetStockRequest;
+use App\Core\Application\Service\BuyStock\BuyStockRequest;
+use App\Core\Application\Service\BuyStock\BuyStockService;
 use App\Core\Application\Service\GetStock\GetStockService;
 
 class StockController extends Controller
@@ -44,5 +46,22 @@ class StockController extends Controller
         $response = $service->execute($input);
         return $this->successWithData($response);
     }
- 
+    
+    public function buyStock(Request $request, BuyStockService $service): JsonResponse
+    {
+        $input = new BuyStockRequest(
+            $request->input('stock_id'),
+            $request->input('jumlah')
+        );
+
+        DB::beginTransaction();
+        try {
+            $service->execute($input, $request->get('account'));
+        } catch (Throwable $e) {
+            DB::rollBack();
+            throw $e;
+        }
+        DB::commit();
+        return $this->success();
+    }
 }
