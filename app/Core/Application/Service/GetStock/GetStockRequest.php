@@ -13,6 +13,6 @@ class GetStockRequest
 
     public function getStatus(): string
     {
-        return $this->string;
+        return $this->status;
     }
 }

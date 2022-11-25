@@ -2,14 +2,15 @@
 
 namespace App\Http\Middleware;
 
-use App\Core\Domain\Models\User\UserType;
-use App\Core\Domain\Repository\UserRepositoryInterface;
-use App\Exceptions\UserException;
 use Closure;
 use Exception;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Exceptions\UserException;
+use Illuminate\Http\RedirectResponse;
+use App\Core\Domain\Models\UserAccount;
+use App\Core\Domain\Models\User\UserType;
+use App\Core\Domain\Repository\UserRepositoryInterface;
 
 class CheckAdminAccountMiddleware
 {
