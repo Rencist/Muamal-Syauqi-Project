@@ -8,6 +8,7 @@ use App\Core\Domain\Models\Stock\StockType;
 use App\Core\Domain\Repository\StockRepositoryInterface;
 use App\Core\Application\Service\AddStock\AddStockRequest;
 use App\Core\Application\Service\AddStock\AddStockResponse;
+use App\Core\Domain\Models\Stock\StockStatus;
 
 class AddStockService 
 {
@@ -26,6 +27,7 @@ class AddStockService
         $stock = Stock::create(
             $account->getUserId(),
             StockType::from($request->getType()),
+            StockStatus::STOCK,
             $request->getName(),
             $request->getJumlah(),
             $request->getHarga(),

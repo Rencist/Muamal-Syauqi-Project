@@ -6,6 +6,7 @@ use App\Exceptions\UserException;
 use App\Core\Domain\Models\Stock\Stock;
 use App\Core\Domain\Models\UserAccount;
 use App\Core\Domain\Models\Stock\StockId;
+use App\Core\Domain\Models\Stock\StockStatus;
 use App\Core\Domain\Repository\UserRepositoryInterface;
 use App\Core\Domain\Repository\StockRepositoryInterface;
 use App\Core\Application\Service\BuyStock\BuyStockRequest;
@@ -36,6 +37,7 @@ class BuyStockService
             $stock = Stock::create(
                 $account->getUserId(),
                 $buy_stock->getType(),
+                StockStatus::BOUGHT,
                 $buy_stock->getName(),
                 $request->getJumlah(),
                 $buy_stock->getHarga(),

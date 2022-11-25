@@ -16,7 +16,7 @@ class GetStockService
     {
         $additional_query = "";
         if($request->getStatus() != "")
-            $additional_query = "where s.status = {$request->getStatus()}";
+            $additional_query = "where s.status = '{$request->getStatus()}'";
 
         $query = DB::select(
             "
