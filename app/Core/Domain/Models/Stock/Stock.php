@@ -10,7 +10,9 @@ use PHPUnit\Framework\SelfDescribing;
 class Stock
 {
     private StockId $id;
-    private UserId $user_id;
+    private UserId $petani_id;
+    private ?UserId $pembeli_id;
+
     private StockType $type;
     private string $name;
     private float $jumlah;
@@ -19,21 +21,23 @@ class Stock
     /**
      * @param StockId $id
      */
-    public function __construct(StockId $id, UserId $user_id, StockType $type, string $name, float $jumlah, float $harga)
+    public function __construct(StockId $id, UserId $petani_id, ?UserId $pembeli_id, StockType $type, string $name, float $jumlah, float $harga)
     {
         $this->id = $id; 
-        $this->user_id = $user_id; 
+        $this->petani_id = $petani_id; 
+        $this->pembeli_id = $pembeli_id; 
         $this->type = $type; 
         $this->name = $name;
         $this->jumlah = $jumlah; 
         $this->harga = $harga;
     }
 
-    public static function create(UserId $user_id, StockType $type, string $name, float $jumlah, float $harga): self
+    public static function create(UserId $petani_id, StockType $type, string $name, float $jumlah, float $harga): self
     {
         return new self(
             StockId::generate(),
-            $user_id,
+            $petani_id,
+            null,
             $type,
             $name,
             $jumlah,
@@ -60,9 +64,14 @@ class Stock
     /**
      * @return UserId
      */
-    public function getUserId(): UserId
+    public function getPetaniId(): UserId
     {
-        return $this->user_id;
+        return $this->petani_id;
+    }
+
+    public function getPembeliId(): UserId
+    {
+        return $this->pembeli_id;
     }
 
     /**

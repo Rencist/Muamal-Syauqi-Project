@@ -15,14 +15,19 @@ class GetStockService
     public function execute(GetStockRequest $request): array
     {
         $additional_query = "";
-        if($request->getStatus() != "")
-            $additional_query = "where s.status = {$request->getStatus()}";
+        if($request->getStatus() != ""){
+            if($request->getStatus() == "0")
+                $additional_query = "where s.pembeli_id = null";
+            else if($request->getStatus() == "1")
+                $additional_query = "where s.pembeli_id > '' ";
+        }
+            
 
         $query = DB::select(
             "
             select 
                 s.id, 
-                (select u.name from user u where u.id = s.user_id) as nama_petani, 
+                (select u.name from user u where u.id = s.petani_id) as nama_petani, 
                 s.stock_type, 
                 s.name, 
                 s.jumlah, 
