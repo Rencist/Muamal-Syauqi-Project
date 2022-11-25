@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use App\Core\Application\Service\AddStock\AddStockRequest;
 use App\Core\Application\Service\AddStock\AddStockService;
+use App\Core\Application\Service\GetStock\GetStockRequest;
 use App\Core\Application\Service\GetStock\GetStockService;
 
 class StockController extends Controller
@@ -37,9 +38,10 @@ class StockController extends Controller
         return $this->success();
     }
 
-    public function getStock(GetStockService $service): JsonResponse
+    public function getStock(Request $request, GetStockService $service): JsonResponse
     {
-        $response = $service->execute();
+        $input = new GetStockRequest($request->input('status')? $request->input('status') : "");
+        $response = $service->execute($input);
         return $this->successWithData($response);
     }
  

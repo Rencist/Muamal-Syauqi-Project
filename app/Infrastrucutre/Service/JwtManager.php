@@ -21,9 +21,6 @@ class JwtManager implements JwtManagerInterface
 
     /**
      * @param UserRepositoryInterface $user_repository
-     * @param NlcMemberRepositoryInterface $nlc_member_repository
-     * @param NpcMemberRepositoryInterface $npc_member_repository
-     * @param NstOrderRepositoryInterface $nst_order_repository
      */
     public function __construct(UserRepositoryInterface $user_repository)
     {
