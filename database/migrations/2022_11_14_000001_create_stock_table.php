@@ -15,17 +15,15 @@ return new class extends Migration
     {
         Schema::create('stock', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('petani_id')->index();
-            $table->uuid('pembeli_id')->nullable()->constrained();
+            $table->uuid('user_id')->index();
             $table->string('stock_type', 64);
+            $table->string('status', 64);
             $table->string('name', 128);
             $table->float('jumlah');
             $table->float('harga');
             $table->timestamp('created_at')->useCurrent();
 
-            $table->foreign('petani_id')->references('id')->on('user');
-            $table->foreign('pembeli_id')->references('id')->on('user');
-
+            $table->foreign('user_id')->references('id')->on('user');
         });
     }
 

@@ -10,6 +10,7 @@ use App\Core\Domain\Models\Stock\Stock;
 use App\Core\Domain\Models\User\UserId;
 use App\Core\Domain\Models\Stock\StockId;
 use App\Core\Domain\Models\Stock\StockType;
+use App\Core\Domain\Models\Stock\StockStatus;
 use App\Core\Domain\Repository\StockRepositoryInterface;
 
 class SqlStockRepository implements StockRepositoryInterface
@@ -59,6 +60,7 @@ class SqlStockRepository implements StockRepositoryInterface
             new StockId($row->id),
             new UserId($row->user_id),
             StockType::from($row->stock_type),
+            StockStatus::from($row->status),
             $row->name,
             $row->jumlah,
             $row->harga
