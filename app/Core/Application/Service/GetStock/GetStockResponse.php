@@ -10,15 +10,17 @@ class GetStockResponse implements JsonSerializable
     private string $nama_petani;
     private string $stock_type;
     private string $name;
+    private string $alamat;
     private float $jumlah;
     private float $harga;
 
-    public function __construct(string $id, string $nama_petani, string $stock_type, string $name, float $jumlah, float $harga) 
+    public function __construct(string $id, string $nama_petani, string $stock_type, string $name, string $alamat, float $jumlah, float $harga) 
     {
         $this->id = $id;
         $this->nama_petani = $nama_petani;
         $this->stock_type = $stock_type;
         $this->name = $name;
+        $this->alamat = $alamat;
         $this->jumlah = $jumlah;
         $this->harga = $harga;
     }
@@ -30,6 +32,7 @@ class GetStockResponse implements JsonSerializable
             'nama_petani' => $this->nama_petani,
             'stock_type' => $this->stock_type,
             'name' => $this->name,
+            'alamat' => $this->alamat,
             'jumlah' => $this->jumlah,
             'harga' => $this->harga,
         ];

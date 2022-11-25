@@ -22,7 +22,8 @@ class GetStockService
             "
             select 
                 s.id, 
-                (select u.name from user u where u.id = s.user_id) as nama_petani, 
+                (select u.name from user u where u.id = s.user_id) as nama_petani,
+                (select u.address from user u where u.id = s.user_id) as alamat, 
                 s.stock_type, 
                 s.name, 
                 s.jumlah, 
@@ -39,6 +40,7 @@ class GetStockService
                     $query->nama_petani,
                     $query->stock_type,
                     $query->name,
+                    $query->alamat,
                     $query->jumlah,
                     $query->harga,
                 );
