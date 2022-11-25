@@ -6,7 +6,7 @@ use JsonSerializable;
 use App\Exceptions\UserException;
 use Illuminate\Support\Facades\DB;
 use App\Core\Domain\Models\UserAccount;
-use App\Core\Domain\Repository\StockRepositoryInterface;
+use App\Core\Application\Service\MyStock\MyStockResponse;
 
 class MyStockService {
     public function execute(UserAccount $account)

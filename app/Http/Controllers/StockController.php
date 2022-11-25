@@ -14,6 +14,7 @@ use App\Core\Application\Service\BuyStock\BuyStockRequest;
 use App\Core\Application\Service\BuyStock\BuyStockService;
 use App\Core\Application\Service\GetStock\GetStockRequest;
 use App\Core\Application\Service\GetStock\GetStockService;
+use App\Core\Application\Service\LogStock\LogStockService;
 
 class StockController extends Controller
 {
@@ -69,6 +70,12 @@ class StockController extends Controller
     public function myStock(Request $request, MyStockService $service): JsonResponse
     {
         $response = $service->execute($request->get('account'));
+        return $this->successWithData($response);
+    }
+
+    public function getLogStock(LogStockService $service): JsonResponse
+    {
+        $response = $service->execute();
         return $this->successWithData($response);
     }
 }
