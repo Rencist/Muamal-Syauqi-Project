@@ -22,6 +22,7 @@ class SqlStockRepository implements StockRepositoryInterface
             'user_id' => $stock->getUserId()->toString(),
             'stock_type' => $stock->getType()->value,
             'name' => $stock->getName(),
+            'status' => $stock->getStatus(),
             'jumlah' => $stock->getJumlah(),
             'harga' => $stock->getHarga()
         ], 'id');
