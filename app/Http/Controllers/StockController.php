@@ -42,11 +42,18 @@ class StockController extends Controller
         return $this->success();
     }
 
-    public function getStock(Request $request, GetStockService $service): JsonResponse
+    public function getAllStock(Request $request, GetStockService $service)
     {
         $input = new GetStockRequest($request->input('status')? $request->input('status') : "");
         $response = $service->execute($input);
-        return $this->successWithData($response);
+        $json = response()->json(
+            [
+                'success' => true,
+                'data' => $response,
+            ]
+        );
+        $data = json_decode($json->getContent(), true);
+        return view('stock.all-stock')->with('stocks', $data["data"]);
     }
     
     public function buyStock(Request $request, BuyStockService $service): JsonResponse
@@ -67,15 +74,34 @@ class StockController extends Controller
         return $this->success();
     }
 
-    public function myStock(Request $request, MyStockService $service): JsonResponse
+    public function myStock(Request $request, MyStockService $service)
     {
         $response = $service->execute($request->get('account'));
-        return $this->successWithData($response);
+        $json = response()->json(
+            [
+                'success' => true,
+                'data' => $response,
+            ]
+        );
+        $data = json_decode($json->getContent(), true);
+        return view('stock.my-stock')->with('stocks', $data["data"]);
     }
 
-    public function getLogStock(LogStockService $service): JsonResponse
+    public function getLogStock(LogStockService $service)
     {
         $response = $service->execute();
-        return $this->successWithData($response);
+        $json = response()->json(
+            [
+                'success' => true,
+                'data' => $response,
+            ]
+        );
+        $data = json_decode($json->getContent(), true);
+        return view('stock.log-stock')->with('stocks', $data["data"]);
+    }
+
+    public function viewCreateStock()
+    {
+        return view('stock.create-stock');
     }
 }
