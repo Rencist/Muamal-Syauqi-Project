@@ -1,7 +1,7 @@
-<aside class="w-96 sticky top-0" aria-label="Sidebar">
+<aside class="w-72 sticky top-0" aria-label="Sidebar">
    <div class="relative overflow-y-auto py-4 px-5 bg-gray-50 rounded dark:bg-gray-800 h-full shadow-md">
       <a href="#" class="flex flex-col items-center pl-2.5 mb-5">
-         <img src="{{asset('images/LOGO.PNG')}}" class="mr-3 h-6 sm:h-7" alt="Flowbite Logo" />
+         <img src="{{asset('images/LOGO.PNG')}}" class="h-10 sm:h-12" alt="Jamucabe Logo" />
          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Cabe Jamu</span>
       </a>
       <ul class="relative space-y-2">
