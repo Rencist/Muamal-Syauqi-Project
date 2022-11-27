@@ -1,8 +1,10 @@
 @extends('layouts.auth')
-@extends('component.sidebar')
-<div class="container">
-    <div>
-        @include('prediksi.grafik-harga')
+@include('component.sidebar')
+<div class="">
+    <div class="grid content-center">
+        <center>
+            @include('prediksi.grafik-harga')
+        </center>
     </div>
 
     <div class="">
