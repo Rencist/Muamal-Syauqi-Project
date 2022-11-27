@@ -516,6 +516,14 @@ video {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
+.top-0 {
+  top: 0px;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -655,6 +663,10 @@ video {
 
 .w-96 {
   width: 24rem;
+}
+
+.w-1 {
+  width: 0.25rem;
 }
 
 .flex-1 {

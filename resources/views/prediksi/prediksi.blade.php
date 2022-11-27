@@ -1,5 +1,6 @@
 @extends('layouts.auth')
 @include('component.sidebar')
+
 <div class="">
     <div class="grid content-center">
         <center>
@@ -46,6 +47,8 @@
         </table>
     </div>
 </div>
+
+
 
 
 
