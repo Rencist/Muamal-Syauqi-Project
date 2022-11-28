@@ -32,9 +32,25 @@ class CheckJwtIamMiddleware
      * @return Response|RedirectResponse
      * @throws Exception
      */
+
+    public function cookiesAuth($auth): string
+    {
+        $header = $auth;
+
+        $position = strrpos($header, 'Bearer ');
+
+        if ($position !== false) {
+            $header = substr($header, $position + 7);
+
+            return str_contains($header, ',') ? strstr($header, ',', true) : $header;
+        }
+
+        return "";
+    }
     public function handle(Request $request, Closure $next)
     {
-        $jwt = $request->bearerToken();
+        //$jwt = $request->bearerToken();
+        $jwt = $this->cookiesAuth($request->cookie('Authorization'));
         if (!$jwt) {
             UserException::throw('Token is not sent', 901);
         }

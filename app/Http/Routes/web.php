@@ -31,9 +31,9 @@ Route::middleware(['iam'])->group(
 );
 
 Route::post('/create_stock', [StockController::class, 'createStock'])->name('createStock');
-        Route::get('/all_stock', [StockController::class, 'getAllStock'])->name('getStock');
-        Route::post('/buy_stock', [StockController::class, 'buyStock'])->name('buyStock');
-        Route::get('/my_stock', [StockController::class, 'myStock'])->name('myStock');
+Route::get('/all_stock', [StockController::class, 'getAllStock'])->name('getStock');
+Route::post('/buy_stock', [StockController::class, 'buyStock'])->name('buyStock');
+Route::get('/my_stock', [StockController::class, 'myStock'])->name('myStock');
 
 Route::get('/create_stock', [StockController::class, 'viewCreateStock']);
 
