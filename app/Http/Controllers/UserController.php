@@ -18,7 +18,7 @@ class UserController extends Controller
     /**
      * @throws Exception
      */
-    public function createUser(Request $request, RegisterUserService $service): JsonResponse
+    public function createUser(Request $request, RegisterUserService $service)
     {
         $request->validate([
             'email' => 'unique:user,email|email',
@@ -45,7 +45,8 @@ class UserController extends Controller
             throw $e;
         }
         DB::commit();
-        return $this->success();
+
+        return redirect('/');
     }
 
     /**
@@ -58,8 +59,16 @@ class UserController extends Controller
             $request->input('password')
         );
         $response = $service->execute($input);
-        
-        return $this->successWithData($response);
+        $json = response()->json(
+            [
+                'success' => true,
+                'data' => $response,
+            ]
+        );
+        $data = json_decode($json->getContent(), true);
+
+        //return $json->header('Authorization', 'Bearer '.$data['data']['token']);
+        return $json->withCookie('Authorization', 'Bearer ' . $data['data']['token'], 24*60);
         // return redirect('/prediksi');
     }
 
