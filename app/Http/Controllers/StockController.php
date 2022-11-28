@@ -42,7 +42,7 @@ class StockController extends Controller
         return $this->success();
     }
 
-    public function getAllStock(Request $request, GetStockService $service)
+    public function getStock(Request $request, GetStockService $service)
     {
         $input = new GetStockRequest($request->input('status')? $request->input('status') : "");
         $response = $service->execute($input);
