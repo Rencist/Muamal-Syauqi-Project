@@ -2,14 +2,15 @@
 
 namespace App\Http\Middleware;
 
-use App\Core\Domain\Models\User\UserType;
-use App\Core\Domain\Repository\UserRepositoryInterface;
-use App\Exceptions\UserException;
 use Closure;
 use Exception;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Exceptions\UserException;
+use Illuminate\Http\RedirectResponse;
+use App\Core\Domain\Models\UserAccount;
+use App\Core\Domain\Models\User\UserType;
+use App\Core\Domain\Repository\UserRepositoryInterface;
 
 class CheckAdminAccountMiddleware
 {
@@ -33,7 +34,7 @@ class CheckAdminAccountMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        /** @var MabaAccount $account */
+        /** @var UserAccount $account */
         $account = $request->get('account');
         if (!$account) {
             UserException::throw("admin account could not be decoded", 2056);

@@ -59,7 +59,8 @@ class UserController extends Controller
         );
         $response = $service->execute($input);
         
-        return redirect('/create_user');
+        return $this->successWithData($response);
+        // return redirect('/prediksi');
     }
 
     public function webCreateUser() {

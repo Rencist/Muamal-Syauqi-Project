@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stock', function (Blueprint $table) {
+        Schema::create('log_stock', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id')->index();
-            $table->string('stock_type', 64);
-            $table->string('status', 64);
-            $table->string('name', 128);
-            $table->float('jumlah');
-            $table->float('harga');
+            $table->uuid('stock_id')->index();
+            $table->float('jumlah');            
             $table->timestamp('created_at')->useCurrent();
 
             $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('stock_id')->references('id')->on('stock');
         });
     }
 
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stock');
+        Schema::dropIfExists('log_stock');
     }
 };
