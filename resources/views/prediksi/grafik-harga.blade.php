@@ -1,11 +1,19 @@
 @extends('layouts.auth')
 
-<div>
-    <div class="grid md:grid-cols-2 sm:grid-flow-row gap-3 w-full">
-        <div><canvas id="bluto" class="canvasChart" ></canvas></div>
-        <div><canvas id="lenteng" class="canvasChart" ></canvas></div>
-        <div><canvas id="ganding" class="canvasChart" ></canvas></div>
-        <div><canvas id="guluk" class="canvasChart" ></canvas></div>
+<div class="w-[90%]">
+    <div class="grid md:grid-cols-2 sm:grid-flow-row gap-4 w-full">
+        <div class="rounded-2xl bg-slate-200 py-3 px-5 h-80">
+            <canvas id="bluto" class="canvasChart" ></canvas>
+        </div>
+        <div class="rounded-2xl bg-slate-200 py-3 px-5 h-80">
+            <canvas id="lenteng" class="canvasChart" ></canvas>
+        </div>
+        <div class="rounded-2xl bg-slate-200 py-3 px-5 h-80">
+            <canvas id="ganding" class="canvasChart" ></canvas>
+        </div>
+        <div class="rounded-2xl bg-slate-200 py-3 px-5 h-80">
+            <canvas id="guluk" class="canvasChart" ></canvas>
+        </div>
     </div>
 </div>
 
@@ -42,6 +50,7 @@
             },
             options: {
                 legend: {display: false},
+                maintainAspectRatio: false,
                 scales: {
                     yAxes: [{ticks: {min: Math.min(...y) - offset, max: Math.max(...y) + offset}}],
                 },
