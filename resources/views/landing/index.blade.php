@@ -43,12 +43,14 @@
                     Pembelian stock Cabe Jamu dan prediksi hasil panen sampai 2027
                 </p>
                 <div class='flex flex-row gap-2'>
+                @if($is_login)
                     <a href='/login_user'><button  class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full lg:mb-36 mb-16 py-2 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                         Login
                     </button></a>
                     <a href='/create_user'><button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full lg:mb-36 mb-16 py-2 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                         Register
                     </button></a>
+                @endif
                 </div>
             </div>
         </div>
