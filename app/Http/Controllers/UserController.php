@@ -67,10 +67,9 @@ class UserController extends Controller
             ]
         );
         $data = json_decode($json->getContent(), true);
-
-        //return $json->header('Authorization', 'Bearer '.$data['data']['token']);
-        return $json->withCookie('Authorization', 'Bearer ' . $data['data']['token'], 24*60);
-        // return redirect('/prediksi');
+        Cookie::queue('Authorization', 'Bearer ' . $data['data']['token'], 24*60);
+        //return $json->withCookie('Authorization', 'Bearer ' . $data['data']['token'], 24*60)
+        return redirect('/my_stock');
     }
 
     public function logoutUser(Request $request) {

@@ -1,11 +1,13 @@
-    <!DOCTYPE html>
+@extends('layouts.auth')
+
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>
-        Cabe Jamu
+         Cabe Jamu
         </title>
         <meta name="description" content="Simple landind page" />
         <meta name="keywords" content="" />
@@ -50,6 +52,8 @@
                     <a href='/create_user'><button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full lg:mb-36 mb-16 py-2 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                         Register
                     </button></a>
+                @else
+                    <div class='c'> 
                 @endif
                 </div>
             </div>
