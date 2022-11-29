@@ -62,7 +62,16 @@ class StockController extends Controller
             $request->input('stock_id'),
             $request->input('jumlah')
         );
+
+        DB::beginTransaction();
+        try {
             $service->execute($input, $request->get('account'));
+        } catch (Throwable $e) {
+            DB::rollBack();
+            throw $e;
+        }
+        DB::commit();
+
         return $this->success();
     }
 

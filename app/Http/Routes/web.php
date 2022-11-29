@@ -25,6 +25,7 @@ Route::middleware(['iam'])->group(
                 "success" => true
             ]);
         });
+        Route::post('/buy_stock', [StockController::class, 'buyStock'])->name('buyStock');
         Route::get('/my_stock', [StockController::class, 'myStock'])->name('myStock');
         Route::post('/create_stock', [StockController::class, 'createStock'])->name('createStock');
         Route::get('/create_stock', [StockController::class, 'viewCreateStock']);
@@ -35,7 +36,7 @@ Route::middleware(['iam'])->group(
 
 
 
-Route::post('/buy_stock', [StockController::class, 'buyStock'])->name('buyStock');
+
 Route::post('/create_user', [UserController::class, 'createUser'])->name('register');
 Route::post('/login_user', [UserController::class, 'loginUser'])->name('login');
 
