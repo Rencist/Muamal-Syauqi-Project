@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Cookie;
+use Exception;
+use Throwable;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use App\Core\Application\Service\LoginUser\LoginUserRequest;
 use App\Core\Application\Service\LoginUser\LoginUserService;
 use App\Core\Application\Service\RegisterUser\RegisterUserRequest;
 use App\Core\Application\Service\RegisterUser\RegisterUserService;
-use Exception;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Throwable;
 
 class UserController extends Controller
 {
@@ -72,11 +73,20 @@ class UserController extends Controller
         // return redirect('/prediksi');
     }
 
-    public function webCreateUser() {
+    public function logoutUser(Request $request) {
+        Cookie::queue(Cookie::forget('Authorization'));
+        return redirect('/');
+    }
+
+    public function webCreateUser(Request $request) {
+        if($request->cookie('Authorization'))
+            return redirect('/my_stock');
         return view('auth.register');
     }
 
-    public function webLoginUser() {
+    public function webLoginUser(Request $request) {
+        if($request->cookie('Authorization'))
+            return redirect('/my_stock');
         return view('auth.login');
     }
  

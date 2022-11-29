@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\PrediksiController;
@@ -15,9 +16,7 @@ use App\Http\Controllers\PrediksiController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function() {
-    return redirect('/login_user');
-});
+Route::get('/', [HomeController::class, 'viewLanding']);
 
 Route::middleware(['iam'])->group(
     function () {
@@ -30,6 +29,7 @@ Route::middleware(['iam'])->group(
         Route::post('/create_stock', [StockController::class, 'createStock'])->name('createStock');
         Route::get('/create_stock', [StockController::class, 'viewCreateStock']);
         Route::get('/all_stock', [StockController::class, 'getStock'])->name('getStock');
+        Route::get('/logout', [UserController::class, 'logoutUser'])->name('logoutUser');
     }
 );
 

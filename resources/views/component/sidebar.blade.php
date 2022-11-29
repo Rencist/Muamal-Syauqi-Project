@@ -1,4 +1,4 @@
-<aside class="w-72 h-full fixed top-0" aria-label="Sidebar">
+<aside class="w-72 h-full fixed top-0 z-50" aria-label="Sidebar">
    <div class="relative overflow-y-auto py-4 px-5 bg-gray-50 rounded dark:bg-gray-800 h-full shadow-md">
       <a href="#" class="flex flex-col items-center pl-2.5 mb-5">
          <img src="{{asset('images/LOGO.PNG')}}" class="h-10 sm:h-12" alt="Jamucabe Logo" />

@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 @extends('layouts.auth')
+@include('component.navbar')
+=======
+@extends('layouts.app')
 
+>>>>>>> origin/nav-side
 @section('content')
     
 <div class="overflow-x-auto relative shadow-md sm:rounded-lg m-3">

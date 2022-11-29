@@ -22,7 +22,7 @@ class StockController extends Controller
     /**
      * @throws Exception
      */
-    public function createStock(Request $request, AddStockService $service): JsonResponse
+    public function createStock(Request $request, AddStockService $service)
     {
         $input = new AddStockRequest(
             $request->input('name'),
@@ -39,7 +39,7 @@ class StockController extends Controller
             throw $e;
         }
         DB::commit();
-        return $this->success();
+        return redirect('/my_stock');
     }
 
     public function getStock(Request $request, GetStockService $service)
