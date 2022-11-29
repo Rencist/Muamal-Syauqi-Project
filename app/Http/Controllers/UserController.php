@@ -76,7 +76,9 @@ class UserController extends Controller
         return view('auth.register');
     }
 
-    public function webLoginUser() {
+    public function webLoginUser(Request $request) {
+        if($request->cookie('Authorization'))
+            return redirect('/my_stock');
         return view('auth.login');
     }
  

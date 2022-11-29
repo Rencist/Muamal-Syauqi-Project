@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-
+@include('component.navbar')
 @section('content')
  
 <section class="bg-gray-50 dark:bg-gray-900">
