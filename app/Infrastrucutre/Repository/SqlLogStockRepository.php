@@ -22,7 +22,8 @@ class SqlLogStockRepository implements LogStockRepositoryInterface
             'id' => $log_stock->getId()->toString(),
             'user_id' => $log_stock->getUserId()->toString(),
             'stock_id' => $log_stock->getStockId()->toString(),
-            'jumlah' => $log_stock->getJumlah()
+            'jumlah' => $log_stock->getJumlah(),
+            'bukti_pembayaran' => $log_stock->getBuktiPembayaran()
         ], 'id');
     }
 
@@ -72,6 +73,7 @@ class SqlLogStockRepository implements LogStockRepositoryInterface
             new UserId($row->user_id),
             new StockId($row->stock_id),
             $row->jumlah,
+            $row->bukti_pembayaran
         );
     }
 }

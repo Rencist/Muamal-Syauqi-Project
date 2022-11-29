@@ -17,6 +17,7 @@ class LogStockService {
                 (select u.address from user u where u.id = ls.user_id) as alamat,
                 ls.jumlah,
                 (select s.harga from stock s where s.id = ls.stock_id) as harga,
+                ls.bukti_pembayaran,
                 ls.created_at as date
             from log_stock ls
             "
@@ -29,6 +30,7 @@ class LogStockService {
                     $query->alamat,
                     $query->jumlah,
                     $query->harga,
+                    $query->bukti_pembayaran,
                     $query->date
                 );
             })->values()->all();

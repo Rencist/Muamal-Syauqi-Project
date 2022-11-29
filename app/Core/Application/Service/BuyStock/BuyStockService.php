@@ -50,6 +50,7 @@ class BuyStockService
                 $account->getUserId(),
                 $stock->getId(),
                 $request->getJumlah(),
+                $request->getBuktiPembayaran()
             );
             $this->log_stock_repository->persist($log_stock);
         }
