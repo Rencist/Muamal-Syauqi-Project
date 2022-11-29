@@ -49,8 +49,7 @@ class BuyStockService
             $log_stock = LogStock::create(
                 $account->getUserId(),
                 $stock->getId(),
-                $request->getJumlah(),
-                $request->getBuktiPembayaran()
+                $request->getJumlah()
             );
             $this->log_stock_repository->persist($log_stock);
         }

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('name', 128);
             $table->float('jumlah');
             $table->float('harga');
-            $table->string('bukti_pembayaran');
             $table->timestamp('created_at')->useCurrent();
 
             $table->foreign('user_id')->references('id')->on('user');

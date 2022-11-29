@@ -12,25 +12,22 @@ class LogStock
     private UserId $user_id;
     private StockId $stock_id;
     private float $jumlah;
-    private string $bukti_pembayaran;
 
-    public function __construct(LogStockId $id, UserId $user_id, StockId $stock_id, float $jumlah, string $bukti_pembayaran)
+    public function __construct(LogStockId $id, UserId $user_id, StockId $stock_id, float $jumlah)
     {
         $this->id = $id; 
         $this->user_id = $user_id;
         $this->stock_id = $stock_id;
         $this->jumlah = $jumlah;
-        $this->bukti_pembayaran = $bukti_pembayaran;
     }
 
-    public static function create(UserId $user_id, StockId $stock_id, float $jumlah, string $bukti_pembayaran): self
+    public static function create(UserId $user_id, StockId $stock_id, float $jumlah): self
     {
         return new self(
             LogStockId::generate(),
             $user_id,
             $stock_id,
-            $jumlah,
-            $bukti_pembayaran,
+            $jumlah
         );
     }
 
