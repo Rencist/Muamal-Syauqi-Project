@@ -27,15 +27,15 @@ Route::middleware(['iam'])->group(
             ]);
         });
         Route::get('/my_stock', [StockController::class, 'myStock'])->name('myStock');
+        Route::post('/create_stock', [StockController::class, 'createStock'])->name('createStock');
+        Route::get('/create_stock', [StockController::class, 'viewCreateStock']);
+        Route::get('/all_stock', [StockController::class, 'getStock'])->name('getStock');
     }
 );
 
-Route::post('/create_stock', [StockController::class, 'createStock'])->name('createStock');
-Route::get('/all_stock', [StockController::class, 'getAllStock'])->name('getStock');
+
+
 Route::post('/buy_stock', [StockController::class, 'buyStock'])->name('buyStock');
-
-Route::get('/create_stock', [StockController::class, 'viewCreateStock']);
-
 Route::post('/create_user', [UserController::class, 'createUser'])->name('register');
 Route::post('/login_user', [UserController::class, 'loginUser'])->name('login');
 

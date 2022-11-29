@@ -71,7 +71,7 @@ class SqlLogStockRepository implements LogStockRepositoryInterface
             new LogStockId($row->id),
             new UserId($row->user_id),
             new StockId($row->stock_id),
-            $row->jumlah,
+            $row->jumlah
         );
     }
 }

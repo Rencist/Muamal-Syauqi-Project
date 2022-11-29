@@ -23,7 +23,7 @@
         <tbody>
             @foreach ($stocks as $stocky => $stock)
                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-slate-100">
+                    <th scope="row" class="py-4 px-6 font-medium">
                         {{ $stock["name"] }}
                     </th>
                     <td class="py-4 px-6">

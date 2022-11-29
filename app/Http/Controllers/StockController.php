@@ -60,7 +60,8 @@ class StockController extends Controller
     {
         $input = new BuyStockRequest(
             $request->input('stock_id'),
-            $request->input('jumlah')
+            $request->input('jumlah'),
+            $request->input('bukti_pembayaran')
         );
 
         DB::beginTransaction();
