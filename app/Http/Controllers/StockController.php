@@ -42,7 +42,7 @@ class StockController extends Controller
         return redirect('/my_stock');
     }
 
-    public function getStock(Request $request, GetStockService $service)
+    public function allStock(Request $request, GetStockService $service)
     {
         $input = new GetStockRequest($request->input('status')? $request->input('status') : "");
         $response = $service->execute($input);
@@ -54,6 +54,20 @@ class StockController extends Controller
         );
         $data = json_decode($json->getContent(), true);
         return view('stock.all-stock')->with('stocks', $data["data"]);
+    }
+
+    public function getStock(GetStockService $service)
+    {
+        $input = new GetStockRequest("stock");
+        $response = $service->execute($input);
+        $json = response()->json(
+            [
+                'success' => true,
+                'data' => $response,
+            ]
+        );
+        $data = json_decode($json->getContent(), true);
+        return view('stock.status-stock')->with('stocks', $data["data"]);
     }
     
     public function buyStock(Request $request, BuyStockService $service): JsonResponse
