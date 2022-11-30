@@ -11,9 +11,10 @@
 </head>
 <body>
     <div>
-        
+        @include('component.navbar-dashboard')
+        @include('component.sidebar')
         @yield('content')
-    
+        
     </div>
 
     <script>
