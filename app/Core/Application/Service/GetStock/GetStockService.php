@@ -16,7 +16,7 @@ class GetStockService
     {
         $additional_query = "";
         if($request->getStatus() != "")
-            $additional_query = "where s.status = '{$request->getStatus()}'";
+            $additional_query = "and s.status = '{$request->getStatus()}'";
 
         $query = DB::select(
             "
@@ -29,6 +29,7 @@ class GetStockService
                 s.jumlah, 
                 s.harga
             from stock s
+            where s.jumlah > 0
             {$additional_query}
             "
         );
