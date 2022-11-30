@@ -59,10 +59,9 @@ class StockController extends Controller
         return view('stock.all-stock')->with('stocks', $data["data"]);
     }
 
-    public function getStock(Request $request, GetStockService $service, GetUserType $user_service)
+    public function getStock(Request $request, GetStockService $service)
     {
         $input = new GetStockRequest("stock");
-        $user_type =  $user_service->execute($request->get('account'))->value;
         $response = $service->execute($input);
         $json = response()->json(
             [
@@ -71,7 +70,7 @@ class StockController extends Controller
             ]
         );
         $data = json_decode($json->getContent(), true);
-        return view('stock.status-stock')->with('stocks', $data["data"])->with('user_type', $user_type);
+        return view('stock.status-stock')->with('stocks', $data["data"]);
     }
     
     public function buyStock(Request $request, BuyStockService $service)
@@ -101,10 +100,9 @@ class StockController extends Controller
         return view('stock.receipt')->with('data', $data['data']);
     }
 
-    public function myStock(Request $request, MyStockService $service, GetUserType $user_service)
+    public function myStock(Request $request, MyStockService $service)
     {
         $response = $service->execute($request->get('account'));
-        $user_type =  $user_service->execute($request->get('account'))->value;
         $json = response()->json(
             [
                 'success' => true,
@@ -112,7 +110,7 @@ class StockController extends Controller
             ]
         );
         $data = json_decode($json->getContent(), true);
-        return view('stock.my-stock')->with('stocks', $data["data"])->with('user_type', $user_type);
+        return view('stock.my-stock')->with('stocks', $data["data"]);
     }
 
     public function getGrafik(GrafikStockService $service)
@@ -140,9 +138,8 @@ class StockController extends Controller
         return view('stock.log-stock')->with('stocks', $data["data"]);
     }
 
-    public function viewCreateStock(Request $request, GetUserType $user_service)
+    public function viewCreateStock(Request $request)
     {
-        $user_type =  $user_service->execute($request->get('account'))->value;
-        return view('stock.create-stock')->with('user_type', $user_type);
+        return view('stock.create-stock');
     }
 }

@@ -8,6 +8,8 @@ use Throwable;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use App\Core\Application\Service\GetUserType;
+use App\Core\Domain\Service\JwtManagerInterface;
 use App\Core\Application\Service\LoginUser\LoginUserRequest;
 use App\Core\Application\Service\LoginUser\LoginUserService;
 use App\Core\Application\Service\RegisterUser\RegisterUserRequest;
@@ -53,7 +55,7 @@ class UserController extends Controller
     /**
      * @throws Exception
      */
-    public function loginUser(Request $request, LoginUserService $service)
+    public function loginUser(Request $request, LoginUserService $service, JwtManagerInterface $jwt_manager, GetUserType $user_service)
     {
         $input = new LoginUserRequest(
             $request->input('email'),
@@ -68,6 +70,9 @@ class UserController extends Controller
         );
         $data = json_decode($json->getContent(), true);
         Cookie::queue('Authorization', 'Bearer ' . $data['data']['token'], 24*60);
+        $account = $jwt_manager->decode($data['data']['token']);
+        $user_type =  $user_service->execute($account)->value;
+        Cookie::queue('userType', $user_type);
         //return $json->withCookie('Authorization', 'Bearer ' . $data['data']['token'], 24*60)
         return redirect('/my_stock');
     }
