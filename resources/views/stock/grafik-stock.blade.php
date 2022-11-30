@@ -1,4 +1,5 @@
-<div class="rounded-2xl bg-slate-200 py-3 px-5 h-full">
+@extends('layouts.auth')
+<div class="h-full">
     <canvas id="stock-data" class="canvasChart" ></canvas>
 </div>
 
