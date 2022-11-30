@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.static')
+@include('component.navbar')
 
 @section('content')
 <div class="overflow-x-auto relative shadow-md sm:rounded-lg m-3">

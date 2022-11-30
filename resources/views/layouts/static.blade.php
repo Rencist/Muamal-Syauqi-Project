@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading bg-slate-300" lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-textdirection="ltr">
+<html class="loading" lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-textdirection="ltr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,11 +10,8 @@
 
 </head>
 <body>
-
     <div>
-
         @yield('content')
-    
     </div>
 
     <script>
@@ -25,6 +22,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
     @yield('script')
 </body>
 </html>

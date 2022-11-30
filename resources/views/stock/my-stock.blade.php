@@ -1,43 +1,50 @@
 @extends('layouts.app')
 @section('content')
-    
-<div class="overflow-x-auto relative shadow-md sm:rounded-lg m-3">
-    <table id="example" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="py-3 px-6">
-                    Nama Produk
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Tipe Produk
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Jumlah Produk
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Harga Produk
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($stocks as $stocky => $stock)
-                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                    <th scope="row" class="py-4 px-6 font-medium">
-                        {{ $stock["name"] }}
+   
+<div class='flex flex-col gap-3 m-3'>
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg mb-3">
+        <table id="example" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="py-3 px-6">
+                        Nama Produk
                     </th>
-                    <td class="py-4 px-6">
-                        {{ $stock["stock_type"] }}
-                    </td>
-                    <td class="py-4 px-6">
-                        {{ $stock["jumlah"] }}
-                    </td>
-                    <td class="py-4 px-6">
-                        {{ $stock["harga"] }}
-                    </td>
+                    <th scope="col" class="py-3 px-6">
+                        Tipe Produk
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Jumlah Produk
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Harga Produk
+                    </th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($stocks as $stocky => $stock)
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <th scope="row" class="py-4 px-6 font-medium">
+                            {{ $stock["name"] }}
+                        </th>
+                        <td class="py-4 px-6">
+                            {{ $stock["stock_type"] }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ $stock["jumlah"] }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ $stock["harga"] }}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <div class="flex justify-end">
+        <a href="{{ url('/create_stock') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+            Tambah Stock
+        </a>
+    </div>
 </div>
 
 @endsection

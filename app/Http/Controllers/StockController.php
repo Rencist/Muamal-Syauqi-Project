@@ -72,7 +72,7 @@ class StockController extends Controller
         return view('stock.status-stock')->with('stocks', $data["data"]);
     }
     
-    public function buyStock(Request $request, BuyStockService $service): JsonResponse
+    public function buyStock(Request $request, BuyStockService $service)
     {
         $input = new BuyStockRequest(
             $request->input('stock_id'),
@@ -81,14 +81,22 @@ class StockController extends Controller
 
         DB::beginTransaction();
         try {
-            $service->execute($input, $request->get('account'));
+            $response = $service->execute($input, $request->get('account'));
         } catch (Throwable $e) {
             DB::rollBack();
             throw $e;
         }
         DB::commit();
 
-        return $this->success();
+        $json = response()->json(
+            [
+                'success' => true,
+                'data' => $response,
+            ]
+        );
+        $data = json_decode($json->getContent(), true);
+
+        return view('stock.receipt')->with('data', $data['data']);
     }
 
     public function myStock(Request $request, MyStockService $service)
