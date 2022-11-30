@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
 
-<section class="bg-gray-50 dark:bg-gray-900">
+<section class="bg-gray-50 dark:bg-gray-200 pt-10">
     <div class="flex flex-col px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div class="w-full bg-white shadow dark:border dark:bg-gray-800 dark:border-gray-700">
+        <div class="w-full bg-white shadow dark:border dark:bg-gray-200 dark:border-gray-200">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <table id="example" class="w-full text-sm text-left text-gray-500 dark:text-gray-400" >
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400" >
+                <table id="example" class="w-full text-sm text-left m-16 text-gray-500 dark:text-gray-800" >
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-200 dark:text-gray-800" >
                         <tr>
                             <th scope="col" class="py-3 px-6">
                                 Nama Produk
@@ -24,7 +24,7 @@
                     </thead>
                     <tbody>
                         @foreach ($stocks as $stocky => $stock)
-                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                            <tr class="bg-white border-b dark:bg-gray-200 dark:border-gray-200">
                                 <th scope="row" class="py-4 px-6 font-medium">
                                     {{ $stock["name"] }}
                                 </th>
