@@ -7,6 +7,7 @@ use Throwable;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use App\Core\Application\Service\GetUserType;
 use App\Core\Application\Service\MyStock\MyStockService;
 use App\Core\Application\Service\AddStock\AddStockRequest;
 use App\Core\Application\Service\AddStock\AddStockService;
@@ -14,9 +15,9 @@ use App\Core\Application\Service\BuyStock\BuyStockRequest;
 use App\Core\Application\Service\BuyStock\BuyStockService;
 use App\Core\Application\Service\GetStock\GetStockRequest;
 use App\Core\Application\Service\GetStock\GetStockService;
+use App\Core\Application\Service\LogStock\LogStockService;
 use App\Core\Application\Service\GetStock\GrafikStockResponse;
 use App\Core\Application\Service\GrafikStock\GrafikStockService;
-use App\Core\Application\Service\LogStock\LogStockService;
 
 class StockController extends Controller
 {
@@ -58,9 +59,10 @@ class StockController extends Controller
         return view('stock.all-stock')->with('stocks', $data["data"]);
     }
 
-    public function getStock(GetStockService $service)
+    public function getStock(Request $request, GetStockService $service, GetUserType $user_service)
     {
         $input = new GetStockRequest("stock");
+        $user_type =  $user_service->execute($request->get('account'))->value;
         $response = $service->execute($input);
         $json = response()->json(
             [
@@ -69,7 +71,7 @@ class StockController extends Controller
             ]
         );
         $data = json_decode($json->getContent(), true);
-        return view('stock.status-stock')->with('stocks', $data["data"]);
+        return view('stock.status-stock')->with('stocks', $data["data"])->with('user_type', $user_type);
     }
     
     public function buyStock(Request $request, BuyStockService $service)
@@ -99,9 +101,10 @@ class StockController extends Controller
         return view('stock.receipt')->with('data', $data['data']);
     }
 
-    public function myStock(Request $request, MyStockService $service)
+    public function myStock(Request $request, MyStockService $service, GetUserType $user_service)
     {
         $response = $service->execute($request->get('account'));
+        $user_type =  $user_service->execute($request->get('account'))->value;
         $json = response()->json(
             [
                 'success' => true,
@@ -109,7 +112,7 @@ class StockController extends Controller
             ]
         );
         $data = json_decode($json->getContent(), true);
-        return view('stock.my-stock')->with('stocks', $data["data"]);
+        return view('stock.my-stock')->with('stocks', $data["data"])->with('user_type', $user_type);
     }
 
     public function getGrafik(GrafikStockService $service)
@@ -137,8 +140,9 @@ class StockController extends Controller
         return view('stock.log-stock')->with('stocks', $data["data"]);
     }
 
-    public function viewCreateStock()
+    public function viewCreateStock(Request $request, GetUserType $user_service)
     {
-        return view('stock.create-stock');
+        $user_type =  $user_service->execute($request->get('account'))->value;
+        return view('stock.create-stock')->with('user_type', $user_type);
     }
 }

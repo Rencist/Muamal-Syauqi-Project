@@ -27,7 +27,7 @@ class GetStockService
                 s.stock_type, 
                 s.name, 
                 s.jumlah, 
-                s.hargag
+                s.harga
             from stock s
             where s.jumlah > 0
             {$additional_query}

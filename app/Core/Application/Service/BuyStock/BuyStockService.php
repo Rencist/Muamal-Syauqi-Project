@@ -6,8 +6,6 @@ use App\Exceptions\UserException;
 use App\Core\Domain\Models\Stock\Stock;
 use App\Core\Domain\Models\UserAccount;
 use App\Core\Domain\Models\Stock\StockId;
-use App\Core\Domain\Models\User\UserType;
-use App\Core\Domain\Models\Stock\StockType;
 use App\Core\Domain\Models\LogStock\LogStock;
 use App\Core\Domain\Models\Stock\StockStatus;
 use App\Core\Domain\Repository\StockRepositoryInterface;
@@ -63,8 +61,7 @@ class BuyStockService
             $stock->getType()->value,
             $stock->getName(),
             $stock->getJumlah(),
-            $stock->getHarga(),
-            $user_repository->getType()->value,
+            $stock->getHarga()
         );
     }
 }
