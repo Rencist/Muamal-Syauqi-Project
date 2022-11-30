@@ -53,5 +53,12 @@ class BuyStockService
         $this->log_stock_repository->persist($log_stock);
         
         $this->stock_repository->persist($buy_stock);
+
+        return new BuyStockResponse(
+            $stock->getType()->value,
+            $stock->getName(),
+            $stock->getJumlah(),
+            $stock->getHarga()
+        );
     }
 }
