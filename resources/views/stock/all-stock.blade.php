@@ -9,6 +9,9 @@
                     Nama Produk
                 </th>
                 <th scope="col" class="py-3 px-6">
+                    Nama Petani
+                </th>
+                <th scope="col" class="py-3 px-6">
                     Tipe Produk
                 </th>
                 <th scope="col" class="py-3 px-6">
@@ -25,6 +28,9 @@
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
                         {{ $stock["name"] }}
                     </th>
+                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                        {{ $stock["nama_petani"] }}
+                    </th>
                     <td class="py-4 px-6">
                         {{ $stock["stock_type"] }}
                     </td>
@@ -32,7 +38,7 @@
                         {{ $stock["jumlah"] }}
                     </td>
                     <td class="py-4 px-6">
-                        {{ $stock["harga"] }}
+                        Rp. {{ $stock["harga"] }} 
                     </td>
                 </tr>
             @endforeach

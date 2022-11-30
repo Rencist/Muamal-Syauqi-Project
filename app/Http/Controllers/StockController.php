@@ -14,6 +14,8 @@ use App\Core\Application\Service\BuyStock\BuyStockRequest;
 use App\Core\Application\Service\BuyStock\BuyStockService;
 use App\Core\Application\Service\GetStock\GetStockRequest;
 use App\Core\Application\Service\GetStock\GetStockService;
+use App\Core\Application\Service\GetStock\GrafikStockResponse;
+use App\Core\Application\Service\GrafikStock\GrafikStockService;
 use App\Core\Application\Service\LogStock\LogStockService;
 
 class StockController extends Controller
@@ -100,6 +102,18 @@ class StockController extends Controller
         );
         $data = json_decode($json->getContent(), true);
         return view('stock.my-stock')->with('stocks', $data["data"]);
+    }
+
+    public function getGrafik(GrafikStockService $service)
+    {
+        $response = $service->execute();
+        $json = response()->json(
+            [
+                'success' => true,
+                'data' => $response,
+            ]
+        );
+        return view('stock.grafik-stock')->with('data', $json->getContent());
     }
 
     public function getLogStock(LogStockService $service)
