@@ -25,12 +25,18 @@ Route::middleware(['iam'])->group(
                 "success" => true
             ]);
         });
+        // Pembeli
         Route::post('/buy_stock', [StockController::class, 'buyStock'])->name('buyStock');
-        Route::get('/my_stock', [StockController::class, 'myStock'])->name('myStock');
+        Route::get('/stock', [StockController::class, 'getStock']);
+
+        // Petani
         Route::post('/create_stock', [StockController::class, 'createStock'])->name('createStock');
         Route::get('/create_stock', [StockController::class, 'viewCreateStock']);
-        Route::get('/all_stock', [StockController::class, 'getStock'])->name('getStock');
+
+        //User
+        Route::get('/my_stock', [StockController::class, 'myStock'])->name('myStock');
         Route::get('/logout', [UserController::class, 'logoutUser'])->name('logoutUser');
+        Route::get('/view_stock', [StockController::class, 'allStock']);
     }
 );
 
@@ -44,9 +50,7 @@ Route::get('/create_user', [UserController::class, 'webCreateUser']);
 Route::get('/login_user', [UserController::class, 'webLoginUser']);
 
 Route::get('/prediksi', [PrediksiController::class, 'webPrediksi']);
-Route::get('/all-stock', [StockController::class, 'allStock']);
-Route::get('/stock', [StockController::class, 'getStock']);
+Route::get('/all_stock', [StockController::class, 'allStock']);
+
 Route::get('/log_stock', [StockController::class, 'getLogStock']);
 Route::get('/grafik_stock', [StockController::class, 'getGrafik']);
-
-Route::get('/view_stock', [StockController::class, 'viewAllStock']);

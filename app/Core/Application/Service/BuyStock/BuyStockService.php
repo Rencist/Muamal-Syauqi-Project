@@ -6,20 +6,24 @@ use App\Exceptions\UserException;
 use App\Core\Domain\Models\Stock\Stock;
 use App\Core\Domain\Models\UserAccount;
 use App\Core\Domain\Models\Stock\StockId;
+use App\Core\Domain\Models\User\UserType;
+use App\Core\Domain\Models\Stock\StockType;
+use App\Core\Domain\Models\LogStock\LogStock;
 use App\Core\Domain\Models\Stock\StockStatus;
 use App\Core\Domain\Repository\StockRepositoryInterface;
 use App\Core\Application\Service\BuyStock\BuyStockRequest;
-use App\Core\Domain\Models\LogStock\LogStock;
-use App\Core\Domain\Models\Stock\StockType;
 use App\Core\Domain\Repository\LogStockRepositoryInterface;
+use App\Core\Domain\Repository\UserRepositoryInterface;
 
 class BuyStockService 
 {
+    private UserRepositoryInterface $user_repository;
     private StockRepositoryInterface $stock_repository;
     private LogStockRepositoryInterface $log_stock_repository;
 
-    public function __construct(StockRepositoryInterface $stock_repository, LogStockRepositoryInterface $log_stock_repository)
+    public function __construct(UserRepositoryInterface $user_repository, StockRepositoryInterface $stock_repository, LogStockRepositoryInterface $log_stock_repository)
     {
+        $this->user_repository = $user_repository;
         $this->stock_repository = $stock_repository;
         $this->log_stock_repository = $log_stock_repository;
     }
@@ -27,6 +31,7 @@ class BuyStockService
     public function execute(BuyStockRequest $request, UserAccount $account)
     {
         $buy_stock = $this->stock_repository->find(new StockId($request->getStockId()));
+        $user_repository = $this->user_repository->find($account->getUserId());
         if ($buy_stock->getStatus() == StockStatus::BOUGHT) {
             UserException::throw("Barang ini tidak bisa dibeli", 8000);
         }
@@ -58,7 +63,8 @@ class BuyStockService
             $stock->getType()->value,
             $stock->getName(),
             $stock->getJumlah(),
-            $stock->getHarga()
+            $stock->getHarga(),
+            $user_repository->getType()->value,
         );
     }
 }

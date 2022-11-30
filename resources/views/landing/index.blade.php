@@ -30,7 +30,7 @@
         }
         </style>
     </head>
-    <body class="leading-normal tracking-normal text-white bg-kebun" style="font-family: 'Source Sans Pro', sans-serif;">
+    <body class="leading-normal tracking-normal text-white bg-kebun">
         <!--Nav-->
         @include('component.navbar')
         <!--Hero-->

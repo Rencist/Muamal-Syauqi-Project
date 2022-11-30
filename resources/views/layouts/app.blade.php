@@ -10,12 +10,18 @@
 
 </head>
 <body>
-    <div>
-        @include('component.navbar-dashboard')
-        @include('component.sidebar')
-        @yield('content')
+    @include('component.navbar-dashboard')
+        <div class="flex w-full h-full">
+            
+            @include('component.sidebar')
         
-    </div>
+            <div class="sticky top-0 h-screen w-full">
+                @yield('content')
+            </div>
+        </div>
+        
+       
+        
 
     <script>
         $(document).ready( function () {
