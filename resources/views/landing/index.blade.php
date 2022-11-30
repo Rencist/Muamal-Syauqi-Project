@@ -42,7 +42,7 @@
                     Cabe Jamu
                 </h1>
                 <p class="leading-normal text-2xl mb-8">
-                    Pembelian stock Cabe Jamu dan prediksi hasil panen sampai 2027
+                    Pembelian stock Cabe Jamu dan prediksi hasil panen
                 </p>
                 <div class='flex flex-row gap-2'>
                 @if($is_login)
