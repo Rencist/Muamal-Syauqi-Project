@@ -1,15 +1,17 @@
-<div class="rounded-2xl bg-slate-200 py-3 px-5 h-80">
+<div class="rounded-2xl bg-slate-200 py-3 px-5 h-full">
     <canvas id="stock-data" class="canvasChart" ></canvas>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
 <!-- data grafik akan sebagai [data stock, bulan]  -->
 
 <script>
     let stockDataCtx = document.getElementById('stock-data');
-    var xValues = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
-    const stockData = [2737, 2762, 2762, 2746, 2748, 2757, 2756, 2750, 2752];
+    let response = '{{$data}}';
+    let result = JSON.parse(response.replaceAll('&quot;', '"'));
 
-    makeChart(stockDataCtx, 'Stock Data', xValues, stockData, 2, "53, 47, 93");
+    makeChart(stockDataCtx, 'Stock Data', result['data']['bulan'], result['data']['jumlah'], 2, "53, 47, 93");
 
     function makeChart(ctx, nama, x, y, offset, color) {
         new Chart(ctx, {

@@ -47,5 +47,6 @@ Route::get('/prediksi', [PrediksiController::class, 'webPrediksi']);
 Route::get('/all-stock', [StockController::class, 'allStock']);
 Route::get('/stock', [StockController::class, 'getStock']);
 Route::get('/log_stock', [StockController::class, 'getLogStock']);
+Route::get('/grafik_stock', [StockController::class, 'getGrafik']);
 
 Route::get('/view_stock', [StockController::class, 'viewAllStock']);
