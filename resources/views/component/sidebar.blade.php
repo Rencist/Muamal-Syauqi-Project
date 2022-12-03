@@ -1,5 +1,5 @@
 <aside class="h-100 w-72 top-0 z-1 mr-20" aria-label="Sidebar">
-   <div class="relative overflow-y-auto py-4 px-5 bg-gray-50 rounded dark:bg-gray-600 h-full shadow-md">
+   <div class="relative overflow-y-auto py-4 px-5 bg-gray-50 dark:bg-gray-600 h-full shadow-md">
       <a href="/" class="flex flex-col items-center pl-2.5 mb-5">
          <img src="{{asset('images/LOGO.PNG')}}" class="h-10 sm:h-12" alt="Jamucabe Logo" />
          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-gray-200">Cabe Jamu</span>

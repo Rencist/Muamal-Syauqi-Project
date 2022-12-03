@@ -16,7 +16,6 @@ class MyStockService {
             select *
             from stock s
             where s.user_id = '{$account->getUserId()->toString()}'
-            and status = 'stock'
             "
         );
         $query_collection = collect($query);

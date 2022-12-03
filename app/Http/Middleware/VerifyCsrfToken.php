@@ -19,5 +19,6 @@ class VerifyCsrfToken extends Middleware
         '/buy_stock',
         '/prediksi',
         '/stock',
+        '/edit_stock',
     ];
 }

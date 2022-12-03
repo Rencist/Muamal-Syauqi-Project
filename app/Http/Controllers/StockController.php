@@ -16,6 +16,8 @@ use App\Core\Application\Service\BuyStock\BuyStockService;
 use App\Core\Application\Service\GetStock\GetStockRequest;
 use App\Core\Application\Service\GetStock\GetStockService;
 use App\Core\Application\Service\LogStock\LogStockService;
+use App\Core\Application\Service\StockEdit\StockEditRequest;
+use App\Core\Application\Service\StockEdit\StockEditService;
 use App\Core\Application\Service\GetStock\GrafikStockResponse;
 use App\Core\Application\Service\GrafikHarga\GrafikHargaService;
 use App\Core\Application\Service\GrafikStock\GrafikStockService;
@@ -60,7 +62,7 @@ class StockController extends Controller
         return view('stock.all-stock')->with('stocks', $data["data"]);
     }
 
-    public function getStock(Request $request, GetStockService $service)
+    public function getStock(GetStockService $service)
     {
         $input = new GetStockRequest("stock");
         $response = $service->execute($input);
@@ -151,8 +153,40 @@ class StockController extends Controller
         return view('stock.log-stock')->with('stocks', $data["data"]);
     }
 
-    public function viewCreateStock(Request $request)
+    public function viewCreateStock()
     {
         return view('stock.create-stock');
+    }
+
+    public function viewEditStock(Request $request, GetStockService $service)
+    {
+        $input = new GetStockRequest($request->input('status')? $request->input('status') : "");
+        $response = $service->execute($input);
+        $json = response()->json(
+            [
+                'success' => true,
+                'data' => $response,
+            ]
+        );
+        $data = json_decode($json->getContent(), true);
+        return view('stock.admin-all-stock')->with('stocks', $data["data"]);
+    }
+
+    
+    /**
+     * @throws Exception
+     */
+    public function editStock(Request $request, StockEditService $service)
+    {
+        $input = new StockEditRequest(
+            $request->input('stock_id'),
+            $request->input('name'),
+            $request->input('jumlah'),
+            $request->input('harga'),
+            $request->input('type')
+        );
+        $service->execute($input);
+
+        return redirect('/edit_stock');
     }
 }
