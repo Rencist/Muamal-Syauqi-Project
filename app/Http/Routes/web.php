@@ -38,13 +38,13 @@ Route::middleware(['iam'])->group(
         Route::get('/logout', [UserController::class, 'logoutUser'])->name('logoutUser');
         Route::get('/view_stock', [StockController::class, 'allStock']);
 
-        //Admin
-        Route::post('/edit_stock', [StockController::class, 'editStock']);
-        Route::get('/edit_stock', [StockController::class, 'viewEditStock']);
+        
     }
 );
 
-
+//Admin
+Route::post('/edit_stock', [StockController::class, 'editStock'])->name('editStock');
+Route::get('/edit_stock', [StockController::class, 'viewEditStock']);
 
 
 Route::post('/create_user', [UserController::class, 'createUser'])->name('register');

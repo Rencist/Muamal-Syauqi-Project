@@ -8,25 +8,29 @@
                     <span class="sr-only">Close modal</span>
                 </button>
                 <div class="py-6 px-6 lg:px-8">
-                    <form class="space-y-6" method="POST" action="{{ route('buyStock') }}" validate>
+                    <form class="space-y-6" method="POST" action="{{ route('editStock') }}" validate>
                         <div>
-                            <input type="hidden" value='' name="stock_id" id="stock_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required>
+                            <input type="hidden" value='' name="stock_id" id="stock_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="" >
                         </div>
                         <div>
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Stock</label>
-                            <input type="name" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Jumlah Dalam Kilogram" required>
+                            <input type="name" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="{{ $stock["id"] }}" >
                         </div>
                         <div>
                             <label for="jumlah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah Stock</label>
-                            <input type="jumlah" name="jumlah" id="jumlah" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Jumlah Dalam Kilogram" required>
+                            <input type="jumlah" name="jumlah" id="jumlah" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="{{ $stock["jumlah"] }}" >
                         </div>
                         <div>
                             <label for="harga" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga Stock</label>
-                            <input type="harga" name="harga" id="harga" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Jumlah Dalam Kilogram" required>
+                            <input type="harga" name="harga" id="harga" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Rp. {{ $stock["harga"] }} " >
                         </div>
                         <div>
-                            <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type Stock</label>
-                            <input type="type" name="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Jumlah Dalam Kilogram" required>
+                            <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipe Stock</label>
+                            <select name="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                <option value="">- Pilih -</option>
+                                <option value="{{ 'cabai' }}">{{ "Cabai" }}</option>
+                                <option value="{{ 'jamu' }}">{{ "Jamu" }}</option>
+                            </select>
                         </div>
                         <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy Stock</button>
                     </form>

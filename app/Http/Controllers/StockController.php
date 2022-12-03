@@ -61,7 +61,7 @@ class StockController extends Controller
         return view('stock.all-stock')->with('stocks', $data["data"]);
     }
 
-    public function getStock(Request $request, GetStockService $service)
+    public function getStock(GetStockService $service)
     {
         $input = new GetStockRequest("stock");
         $response = $service->execute($input);
@@ -145,16 +145,25 @@ class StockController extends Controller
         return view('stock.create-stock');
     }
 
-    public function viewEditStock()
+    public function viewEditStock(Request $request, GetStockService $service)
     {
-        return view('stock.edit-stock');
+        $input = new GetStockRequest($request->input('status')? $request->input('status') : "");
+        $response = $service->execute($input);
+        $json = response()->json(
+            [
+                'success' => true,
+                'data' => $response,
+            ]
+        );
+        $data = json_decode($json->getContent(), true);
+        return view('stock.admin-all-stock')->with('stocks', $data["data"]);
     }
 
     
     /**
      * @throws Exception
      */
-    public function editStock(Request $request, StockEditService $service): JsonResponse
+    public function editStock(Request $request, StockEditService $service)
     {
         $input = new StockEditRequest(
             $request->input('stock_id'),
@@ -165,6 +174,6 @@ class StockController extends Controller
         );
         $service->execute($input);
 
-        return $this->success();
+        return redirect('/edit_stock');
     }
 }

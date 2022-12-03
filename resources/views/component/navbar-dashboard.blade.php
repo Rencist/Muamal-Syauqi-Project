@@ -1,4 +1,4 @@
-<nav class="sticky top-0 z-50 bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-600">
+<nav class="sticky top-0 z-50 bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-600">
   <div class="container flex flex-wrap items-center justify-between mx-auto">
   <a href="/" class="flex items-center">
       <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"></span>

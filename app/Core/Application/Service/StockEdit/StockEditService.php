@@ -29,7 +29,7 @@ class StockEditService
         if ($request->getName()) $stock->setJumlah($request->getJumlah());
         if ($request->getJumlah()) $stock->setName($request->getName());
         if ($request->getHarga()) $stock->setHarga($request->getHarga());
-        if ($request->getType()) $stock->setType($request->getType());
+        if ($request->getType()) $stock->setType(StockType::from($request->getType()));
 
         $this->stock_repository->persist($stock);
     }
