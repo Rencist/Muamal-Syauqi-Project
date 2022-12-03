@@ -19,6 +19,7 @@ use App\Core\Application\Service\LogStock\LogStockService;
 use App\Core\Application\Service\StockEdit\StockEditRequest;
 use App\Core\Application\Service\StockEdit\StockEditService;
 use App\Core\Application\Service\GetStock\GrafikStockResponse;
+use App\Core\Application\Service\GrafikHarga\GrafikHargaService;
 use App\Core\Application\Service\GrafikStock\GrafikStockService;
 
 class StockController extends Controller
@@ -115,7 +116,7 @@ class StockController extends Controller
         return view('stock.my-stock')->with('stocks', $data["data"]);
     }
 
-    public function getGrafik(GrafikStockService $service)
+    public function getGrafikStock(GrafikStockService $service)
     {
         $response = $service->execute();
         $json = response()->json(
@@ -125,6 +126,18 @@ class StockController extends Controller
             ]
         );
         return view('stock.grafik-stock')->with('data', $json->getContent());
+    }
+
+    public function getGrafikHarga(GrafikHargaService $service)
+    {
+        $response = $service->execute();
+        $json = response()->json(
+            [
+                'success' => true,
+                'data' => $response,
+            ]
+        );
+        return view('stock.grafik-harga')->with('data', $json->getContent());
     }
 
     public function getLogStock(LogStockService $service)
