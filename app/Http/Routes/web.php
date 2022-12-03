@@ -37,6 +37,10 @@ Route::middleware(['iam'])->group(
         Route::get('/my_stock', [StockController::class, 'myStock'])->name('myStock');
         Route::get('/logout', [UserController::class, 'logoutUser'])->name('logoutUser');
         Route::get('/view_stock', [StockController::class, 'allStock']);
+
+        //Admin
+        Route::post('/edit_stock', [StockController::class, 'editStock']);
+        Route::get('/edit_stock', [StockController::class, 'viewEditStock']);
     }
 );
 

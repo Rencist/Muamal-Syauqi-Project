@@ -96,16 +96,29 @@ class Stock
     /**
      * @return float
      */
-    public function setJumlah($jumlah): void
-    {
-        $this->jumlah = $jumlah;
-    }
-
-    /**
-     * @return float
-     */
     public function getHarga(): float
     {
         return $this->harga;
     }
+    
+    public function setName($name): void
+    {
+        $this->name = $name;
+    }
+       
+    public function setJumlah($jumlah): void
+    {
+        $this->jumlah = $jumlah;
+    }
+    
+    public function setHarga($harga): void
+    {
+        $this->harga = $harga;
+    }
+
+    public function setType($type): void
+    {
+        $this->type = $type;
+    }
+ 
 }
