@@ -7,6 +7,7 @@ use Throwable;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use App\Core\Domain\Models\User\UserType;
 use App\Core\Application\Service\GetUserType;
 use App\Core\Application\Service\MyStock\MyStockService;
 use App\Core\Application\Service\AddStock\AddStockRequest;
@@ -19,6 +20,8 @@ use App\Core\Application\Service\LogStock\LogStockService;
 use App\Core\Application\Service\StockEdit\StockEditRequest;
 use App\Core\Application\Service\StockEdit\StockEditService;
 use App\Core\Application\Service\GetStock\GrafikStockResponse;
+use App\Core\Application\Service\DeleteStock\DeleteStockRequest;
+use App\Core\Application\Service\DeleteStock\DeleteStockService;
 use App\Core\Application\Service\GrafikHarga\GrafikHargaService;
 use App\Core\Application\Service\GrafikStock\GrafikStockService;
 
@@ -172,6 +175,14 @@ class StockController extends Controller
         return view('stock.admin-all-stock')->with('stocks', $data["data"]);
     }
 
+    public function deleteStock(Request $request, DeleteStockService $service)
+    {
+        $input = new DeleteStockRequest($request->input('id'));
+        $service->execute($input, UserType::from($request->cookie('userType')) );
+        
+        return $this->success();
+    }
+
     
     /**
      * @throws Exception
@@ -185,7 +196,7 @@ class StockController extends Controller
             $request->input('harga'),
             $request->input('type')
         );
-        $service->execute($input);
+        $service->execute($input, UserType::from($request->cookie('userType')));
 
         return redirect('/edit_stock');
     }

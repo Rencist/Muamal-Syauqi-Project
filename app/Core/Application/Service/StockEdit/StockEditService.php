@@ -2,9 +2,11 @@
 
 namespace App\Core\Application\Service\StockEdit;
 
+use App\Exceptions\UserException;
 use App\Core\Domain\Models\Stock\Stock;
 use App\Core\Domain\Models\UserAccount;
 use App\Core\Domain\Models\Stock\StockId;
+use App\Core\Domain\Models\User\UserType;
 use App\Core\Domain\Models\Stock\StockType;
 use App\Core\Domain\Models\Stock\StockStatus;
 use App\Core\Domain\Repository\StockRepositoryInterface;
@@ -23,8 +25,11 @@ class StockEditService
         $this->stock_repository = $stock_repository;
     }
 
-    public function execute(StockEditRequest $request)
+    public function execute(StockEditRequest $request, UserType $user_type)
     {
+        if ($user_type != UserType::ADMIN)
+            UserException::throw ('Anda tidak memiliki izin untuk menghapus', 8000);
+
         $stock = $this->stock_repository->find(new StockId($request->getStockId()));
         if ($request->getName()) $stock->setJumlah($request->getJumlah());
         if ($request->getJumlah()) $stock->setName($request->getName());

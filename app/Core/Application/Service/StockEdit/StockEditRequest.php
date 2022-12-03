@@ -4,6 +4,7 @@ namespace App\Core\Application\Service\StockEdit;
 
 class StockEditRequest
 {
+
     private string $stock_id;
     private ?string $name;
     private ?float $jumlah;

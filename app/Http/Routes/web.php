@@ -44,6 +44,7 @@ Route::middleware(['iam'])->group(
 
 //Admin
 Route::post('/edit_stock', [StockController::class, 'editStock'])->name('editStock');
+Route::get('/delete_stock', [StockController::class, 'deleteStock'])->name('deleteStock');
 Route::get('/edit_stock', [StockController::class, 'viewEditStock']);
 
 
