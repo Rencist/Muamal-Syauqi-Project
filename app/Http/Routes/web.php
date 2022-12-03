@@ -43,9 +43,13 @@ Route::middleware(['iam'])->group(
 );
 
 //Admin
-Route::post('/edit_stock', [StockController::class, 'editStock'])->name('editStock');
-Route::get('/delete_stock', [StockController::class, 'deleteStock'])->name('deleteStock');
-Route::get('/edit_stock', [StockController::class, 'viewEditStock']);
+Route::middleware(['iam', 'admin'])->group(
+    function () {
+        Route::post('/edit_stock', [StockController::class, 'editStock'])->name('editStock');
+        Route::get('/delete_stock', [StockController::class, 'deleteStock'])->name('deleteStock');
+        Route::get('/edit_stock', [StockController::class, 'viewEditStock']);
+    }
+);
 
 
 Route::post('/create_user', [UserController::class, 'createUser'])->name('register');
